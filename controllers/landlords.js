@@ -14,9 +14,7 @@ const getOne = (req, res) => {
     Review.find(
       {_id:{ $nin : landlord.reviews}},
       (err, popReviews) => {
-        console.log(popReviews)
-        landlord.reviews = popReviews
-        res.json(landlord)
+        res.json(popReviews)
       }
     )
   })
