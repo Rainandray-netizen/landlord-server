@@ -12,12 +12,6 @@ const getOne = (req, res) => {
   Landlord.findById(req.params.id)
   .populate('reviews').exec((err, landlord)=> {
     res.json(landlord)
-    // Review.find(
-    //   {_id:{ $nin : landlord.reviews}},
-    //   (err, popReviews) => {
-    //     res.json(popReviews)
-    //   }
-    // )
   })
 }
 
