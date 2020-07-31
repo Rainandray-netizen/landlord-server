@@ -2,10 +2,16 @@ const Review = require('../models/review.model')
 const Landlord = require('../models/landlord.model')
 const User = require('../models/user.model')
 
+// const getAll = (req, res) => {
+//   Review.find({}, (err, allReviews)=> {
+//     if (err) return res.status('400').json({ 'err' : 'Reviews could not be gotten' })
+//     res.json(allReviews)
+//   })
+// }
+
 const getAll = (req, res) => {
-  Review.find({}, (err, allReviews)=> {
-    if (err) return res.status('400').json({ 'err' : 'Reviews could not be gotten' })
-    res.json(allReviews)
+  Review.find({}).populate('landlordId').populate('reviewerId').exec((err,result)=>{
+    res.json(result)
   })
 }
 
