@@ -1,5 +1,6 @@
 const Landlord = require('../models/landlord.model');
 const Review = require('../models/review.model')
+const User = require('../models/user.model')
 
 const getAll = (req, res) => {
   Landlord.find({}, (err, allLandlords)=> {
@@ -26,7 +27,6 @@ const deleteOne = (req, res) => {
     if (err) return res.status('400').json(err)
     res.json('classicide complete')
   })
-
 }
 
 module.exports = {

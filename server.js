@@ -33,6 +33,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+
+//routes below are protected
+app.use(require('./config/auth'));
 app.use('/landlords', landlordsRouter)
 app.use('/reviews', reviewsRouter)
 
