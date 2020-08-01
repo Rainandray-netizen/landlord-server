@@ -35,8 +35,14 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 
+function checkAuth(req, res, next) {
+  if (req.user) return next();
+  return res.status(401).json({msg: 'Not Authorized'});
+}
+
 //routes below are protected
 app.use(require('./config/auth'));
+app.use(checkAuth)
 app.use('/landlords', landlordsRouter)
 app.use('/reviews', reviewsRouter)
 

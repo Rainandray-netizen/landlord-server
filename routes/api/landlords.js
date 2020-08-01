@@ -8,4 +8,6 @@ router.get('/:id', landlordCtrl.getOne)
 router.post('/', landlordCtrl.create )
 router.delete('/:id', landlordCtrl.delete)
 
+
+
 module.exports = router
