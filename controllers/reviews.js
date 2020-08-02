@@ -18,7 +18,7 @@ const getAll = (req, res) => {
 const getOne = (req, res) => {
   Review.findById(req.params.id).exec((err,res)=>{
     if (err) return res.status('400').json(err)
-    
+    if (!res.body) res.status('400').json('review no exist')
   })
   .populate('landlordId')
   .exec((err, res)=>{
