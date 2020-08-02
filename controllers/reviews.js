@@ -16,23 +16,17 @@ const getAll = (req, res) => {
 }
 
 const getOne = (req, res) => {
-  Review.findById(req.params.id).exec((err,res)=>{
-    if (err) return res.status('400').json(err)
-    // if (!res.body) res.status('400').json('review no exist')
-  })
-  .populate('landlordId')
-  .exec((err, res)=>{
-    if (err) return res.status('400').json(err)
-  })
-  .populate('reviewerId')
-  .exec((err, result)=>{
-    if (err) return res.status('400').json(err)
+  Review.findById(req.params.id).populate(landlordId).exec((err, res)=> {
+    if(!res.body){
+      res.json({'no body'})
+    }
     res.json(result)
   })
 }
 
 // const getOne = (req, res) => {
 //   Review.findById(req.params.id, async (err, review) => {
+//     if (err) return res.status('400').json(err)
 //     res.json(review)
 //   })
 // }
