@@ -11,12 +11,16 @@ const User = require('../models/user.model')
 
 const getAll = (req, res) => {
   Review.find({}).populate('landlordId').populate('reviewerId').exec((err,result)=>{
+    if (err) return res.status('400').json(err)
+
     res.json(result)
   })
 }
 
 const getOne = (req, res) => {
   Review.findById(req.params.id).populate('landlordId').exec((err, res)=> {
+    if (err) return res.status('400').json(err)
+
     res.json(result)
   })
 }
