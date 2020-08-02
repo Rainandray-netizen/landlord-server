@@ -16,10 +16,15 @@ const getAll = (req, res) => {
 }
 
 const getOne = (req, res) => {
-  Review.findById(req.params.id).populate('landlordId')
+  Review.findById(req.params.id).exec((err,res)=>{
+    if (err) return res.status('400').json(err)
+    
+  })
+  .populate('landlordId')
   .exec((err, res)=>{
     if (err) return res.status('400').json(err)
-  }).populate('reviewerId')
+  })
+  .populate('reviewerId')
   .exec((err, result)=>{
     if (err) return res.status('400').json(err)
     res.json(result)
