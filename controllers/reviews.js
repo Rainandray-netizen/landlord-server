@@ -16,7 +16,7 @@ const getAll = (req, res) => {
 }
 
 const getOne = (req, res) => {
-  Review.findById(req.params.id).populate(landlordId).exec((err, res)=> {
+  Review.findById(req.params.id).populate('landlordId').exec((err, res)=> {
     res.json(result)
   })
 }
