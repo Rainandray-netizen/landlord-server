@@ -20,7 +20,7 @@ const getAll = (req, res) => {
 const getOne = (req, res) => {
   Review.findById(req.params.id).populate('landlordId').exec((err, anotherVar)=> {
     console.log('RESPONSE: ',anotherVar)
-    if (!res.body) return res.status('400').json({'message': 'no review found with this id'})
+    if (!anotherVar) return res.status('400').json({'message': 'no review found with this id'})
     if (err) return res.status('400')
 
     res.json(anotherVar)
