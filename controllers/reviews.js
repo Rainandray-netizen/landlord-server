@@ -15,12 +15,18 @@ const getAll = (req, res) => {
   })
 }
 
-const getOne = (req, res) => {
-  Review.findById(req.params.id, async (err, review) => {
+const getone = (req, res) => {
+  Review.findById(req.params.id).populate(landlordId).populate('reviewerId').exec((err, result)=>{
     if (err) return res.status('400').json(err)
-    res.json(review)
+    res.json(result)
   })
 }
+
+// const getOne = (req, res) => {
+//   Review.findById(req.params.id, async (err, review) => {
+//     res.json(review)
+//   })
+// }
 
 const create = (req, res) => {
   newReview = new Review({

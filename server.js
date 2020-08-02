@@ -43,6 +43,7 @@ function checkAuth(req, res, next) {
 //routes below are protected
 app.use(require('./config/auth'));
 app.use(checkAuth)
+
 app.use('/landlords', landlordsRouter)
 app.use('/reviews', reviewsRouter)
 
