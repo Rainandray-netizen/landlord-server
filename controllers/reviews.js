@@ -18,21 +18,14 @@ const getAll = (req, res) => {
 }
 
 const getOne = (req, res) => {
-  Review.findById(req.params.id).populate('landlordId').exec((err, anotherVar)=> {
-    console.log('RESPONSE: ',anotherVar)
-    if (!anotherVar) return res.status('400').json({'message': 'no review found with this id'})
+  Review.findById(req.params.id).populate('landlordId').exec((err, review)=> {
+    console.log('RESPONSE: ',review)
+    if (!review) return res.status('400').json({'message': 'no review found with this id'})
     if (err) return res.status('400')
 
-    res.json(anotherVar)
+    res.json(review)
   })
 }
-
-// const getOne = (req, res) => {
-//   Review.findById(req.params.id, async (err, review) => {
-//     if (err) return res.status('400').json(err)
-//     res.json(review)
-//   })
-// }
 
 const create = (req, res) => {
   newReview = new Review({

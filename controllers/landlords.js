@@ -11,8 +11,11 @@ const getAll = (req, res) => {
 
 const getOne = (req, res) => {
   Landlord.findById(req.params.id)
-  .populate('reviews').exec((err, landlord)=> {
+  .populate('reviews')
+  .exec((err, landlord)=> {
+    if (!landlord) return res.status('400').json({'message': 'no review found with this id'})
     res.json(landlord)
+    if (err) return res.status('400').json(err)
   })
 }
 
